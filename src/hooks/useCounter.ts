@@ -1,3 +1,7 @@
+/**
+ * Classic counter example to help understand the flow of this npm package
+ */
+
 import { useEffect, useState } from 'react'
 
 const useCounter = (): number => {
@@ -7,7 +11,7 @@ const useCounter = (): number => {
     const interval = setInterval(() => {
       if (count > 99) return setCount(0)
 
-      setCount(count + 2)
+      setCount(count + 1)
     }, 1000)
 
     return () => clearInterval(interval)

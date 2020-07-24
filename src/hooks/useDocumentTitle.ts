@@ -1,6 +1,6 @@
-let { useRef, useEffect } = require('react')
+import { useRef, useEffect } from 'react'
 
-type useDocumentTitleProps = {
+type IuseDocumentTitleProps = {
   title: string
   retainOnUnmount: boolean
 }
@@ -8,7 +8,7 @@ type useDocumentTitleProps = {
 const useDocumentTitle = ({
   title,
   retainOnUnmount = false,
-}: useDocumentTitleProps): void => {
+}: IuseDocumentTitleProps): void => {
   const defaultTitle = useRef(document.title)
 
   useEffect(() => {
