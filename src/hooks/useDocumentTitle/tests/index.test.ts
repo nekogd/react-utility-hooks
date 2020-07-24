@@ -1,5 +1,5 @@
 import { renderHook } from '@testing-library/react-hooks';
-import { useDocumentTitle } from '../useDocumentTitle';
+import { useDocumentTitle } from '../index';
 
 describe('useDocumentTitle tests', () => {
   it('renders the hook correctly, check types and set new title', () => {

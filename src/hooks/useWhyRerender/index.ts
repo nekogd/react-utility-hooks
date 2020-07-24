@@ -8,13 +8,17 @@
  * })
  */
 
-import { useEffect, useRef, MutableRefObject } from 'react';
+import { useEffect, useRef } from 'react';
 
-export const useWhyRerender = (name: string, props: any): void => {
+export type IProps = {
+  [key: string]: any;
+};
+
+export const useWhyRerender = (name: string, props: IProps): void => {
   /**
    * Mutable ref object to store props so that we can compare props on each hook run
    */
-  const previousProps = useRef<MutableRefObject<any>>();
+  const previousProps = useRef<IProps>({});
 
   useEffect(() => {
     if (previousProps.current) {
@@ -24,7 +28,7 @@ export const useWhyRerender = (name: string, props: any): void => {
       /**
        * object to track the changes in props
        */
-      const objectWithChanges = {};
+      const objectWithChanges: IProps = {};
       // Iterate through keys generated from props
       if (allKeys && allKeys.length > 0) {
         for (let i = 0, len = allKeys.length; i < len; i++) {

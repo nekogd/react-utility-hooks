@@ -22,14 +22,14 @@
 
 import { useCallback, useState } from 'react';
 
-type IuseCounter = {
+type IUseCounter = {
   count: number;
   increment: () => void;
   reset: () => void;
   decrement: () => void;
 };
 
-export const useCounter = (initialValue: number = 0): IuseCounter => {
+export const useCounter = (initialValue: number = 0): IUseCounter => {
   const [count, setCount] = useState<number>(initialValue);
   const increment = useCallback(() => setCount((value) => value + 1), []);
   const decrement = useCallback(() => setCount((value) => value - 1), []);

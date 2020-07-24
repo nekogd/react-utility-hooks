@@ -10,7 +10,10 @@
 
 import { useState, useCallback, useRef } from 'react';
 
-export const useHover = () => {
+export const useHover = <T extends HTMLElement>(): [
+  (node?: T | null) => void,
+  boolean,
+] => {
   const [value, setValue] = useState<boolean>(false);
 
   const handleMouseOver = useCallback(() => setValue(true), []);
@@ -21,21 +24,21 @@ export const useHover = () => {
    * Based on that we will remove event listerens.
    */
 
-  const ref = useRef<HTMLElement | null>(null);
+  const ref = useRef<T>();
 
   /**
    * useEffect changes to ref.current would not cause a rerender and the effect would run again.
    * With a callback ref the event listeners get's changed
    */
 
-  const callbackRef = useCallback(
+  const callbackRef = useCallback<(node?: null | T) => void>(
     (node) => {
       if (ref.current) {
         ref.current.removeEventListener('mouseover', handleMouseOver);
         ref.current.removeEventListener('mouseout', handleMouseOut);
       }
 
-      ref.current = node;
+      ref.current = node || undefined;
 
       if (ref.current) {
         ref.current.addEventListener('mouseover', handleMouseOver);

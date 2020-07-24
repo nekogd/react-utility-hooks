@@ -1,5 +1,5 @@
 import { renderHook, act } from '@testing-library/react-hooks'
-import { useCounter } from '../useCounter'
+import { useCounter } from '../index'
 
 describe('useCounter tests', () => {
   it('renders the hook correctly and checks types', () => {
