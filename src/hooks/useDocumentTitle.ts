@@ -5,7 +5,7 @@ type IuseDocumentTitleProps = {
   retainOnUnmount: boolean
 }
 
-const useDocumentTitle = ({
+export const useDocumentTitle = ({
   title,
   retainOnUnmount = false,
 }: IuseDocumentTitleProps): void => {
@@ -24,4 +24,4 @@ const useDocumentTitle = ({
   }, [])
 }
 
-export default useDocumentTitle
+

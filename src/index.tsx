@@ -1,4 +1,4 @@
-export { default as useCounter } from './hooks/useCounter'
-export { default as useDocumentTitle } from './hooks/useDocumentTitle'
-export { default as useWhyRerender } from './hooks/useWhyRerender'
-export { default as useHover } from './hooks/useHover'
+export { useCounter } from './hooks/useCounter'
+export { useDocumentTitle } from './hooks/useDocumentTitle'
+export { useWhyRerender } from './hooks/useWhyRerender'
+export { useHover } from './hooks/useHover'

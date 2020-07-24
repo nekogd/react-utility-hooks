@@ -4,7 +4,7 @@
 
 import { useEffect, useState } from 'react'
 
-const useCounter = (): number => {
+export const useCounter = (): number => {
   const [count, setCount] = useState<number>(0)
 
   useEffect(() => {
@@ -18,5 +18,3 @@ const useCounter = (): number => {
   }, [count, setCount])
   return count
 }
-
-export default useCounter

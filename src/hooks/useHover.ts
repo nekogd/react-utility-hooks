@@ -1,19 +1,33 @@
+/**
+ * example usage
+ * const ExampleComponent = () => {
+ *   const [hoverRef, isHovered] = useHover();
+ *   return (
+ *      <div ref={hoverRef}> {isHovered ? 'I am hovered': 'Not hovered'}</div>
+ *   )
+ * }
+ */
+
 import { useState, useCallback, useRef } from 'react'
 
-const useHover = () => {
+export const useHover = () => {
   const [value, setValue] = useState<boolean>(false)
 
-  // Wrap in useCallback so we can use in dependencies below
   const handleMouseOver = useCallback(() => setValue(true), [])
   const handleMouseOut = useCallback(() => setValue(false), [])
 
-  // Keep track of the last node passed to callbackRef so we can remove its event listeners.
+  /**
+   * Keep track of the last node passed to callbackRef.
+   * Based on that we will remove event listerens.
+   */
+
   const ref = useRef(null) as any
 
-  // Use a callback ref instead of useEffect so that event listeners
-  // get changed in the case that the returned ref gets added to
-  // a different element later. With useEffect, changes to ref.current
-  // wouldn't cause a rerender and thus the effect would run again.
+  /**
+   * useEffect changes to ref.current would not cause a rerender and the effect would run again.
+   * With a callback ref the event listeners get's changed
+   */
+
   const callbackRef = useCallback(
     (node) => {
       if (ref.current) {
@@ -33,17 +47,3 @@ const useHover = () => {
 
   return [callbackRef, value]
 }
-
-export default useHover
-
-// Usage
-
-// function App() {
-//   const [hoverRef, isHovered] = useHover();
-
-//   return (
-//     <div ref={hoverRef}>
-//       {isHovered ? 'yes' : 'no'}
-//     </div>
-//   );
-// }

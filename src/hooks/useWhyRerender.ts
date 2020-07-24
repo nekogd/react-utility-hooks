@@ -10,7 +10,7 @@
 
 import { useEffect, useRef } from 'react'
 
-const useWhyRerender = (name: string, props: any): void => {
+export const useWhyRerender = (name: string, props: any): void => {
   /**
    * Mutable ref object to store props so that we can compare props on each hook run
    */
@@ -49,5 +49,3 @@ const useWhyRerender = (name: string, props: any): void => {
     previousProps.current = props
   })
 }
-
-export default useWhyRerender
