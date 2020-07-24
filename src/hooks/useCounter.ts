@@ -1,20 +1,38 @@
 /**
  * Classic counter example to help understand the flow of this npm package
+ * Usage:
+ * import {useCounter} from from "@neko/react-utility-hooks";
+ * const ExampleComponent = () => {
+ *   const { count, increment, reset, decrement } = useCounter();
+ *   return (
+ *   <>
+ *     <button onClick={increment}>Increment counter</button>
+ *     <button onClick={reset}>Reset counter</button>
+ *     <button onClick={decrement}>Decrement counter</button>
+ *      <p>{count}</p>
+ *    </> )}
+ *
+ * @param initialValue {number} initial counter value
+ *
+ * @returns count {number} current counter value
+ * @returns increment {fn} to increment count value
+ * @returns decrement {fn} to decrement count value
+ * @returns reset {fn} to reset count value
  */
 
-import { useEffect, useState } from 'react'
+import { useCallback, useState } from 'react'
 
-export const useCounter = (): number => {
-  const [count, setCount] = useState<number>(0)
+type IuseCounter = {
+  count: number
+  increment: () => void
+  reset: () => void
+  decrement: () => void
+}
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (count > 99) return setCount(0)
-
-      setCount(count + 1)
-    }, 1000)
-
-    return () => clearInterval(interval)
-  }, [count, setCount])
-  return count
+export const useCounter = (initialValue: number = 0): IuseCounter => {
+  const [count, setCount] = useState<number>(initialValue)
+  const increment = useCallback(() => setCount((value) => value + 1), [])
+  const decrement = useCallback(() => setCount((value) => value - 1), [])
+  const reset = useCallback(() => setCount(initialValue), [initialValue])
+  return { count, increment, decrement, reset }
 }

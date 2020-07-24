@@ -1,14 +1,9 @@
 import { useRef, useEffect } from 'react'
 
-type IuseDocumentTitleProps = {
-  title: string
-  retainOnUnmount: boolean
-}
-
-export const useDocumentTitle = ({
-  title,
-  retainOnUnmount = false,
-}: IuseDocumentTitleProps): void => {
+export const useDocumentTitle = (
+  title: string,
+  retainOnUnmount: boolean = false
+): void => {
   const defaultTitle = useRef(document.title)
 
   useEffect(() => {
@@ -23,5 +18,3 @@ export const useDocumentTitle = ({
     }
   }, [])
 }
-
-
