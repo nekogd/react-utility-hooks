@@ -20,19 +20,19 @@
  * @returns reset {fn} to reset count value
  */
 
-import { useCallback, useState } from 'react'
+import { useCallback, useState } from 'react';
 
 type IuseCounter = {
-  count: number
-  increment: () => void
-  reset: () => void
-  decrement: () => void
-}
+  count: number;
+  increment: () => void;
+  reset: () => void;
+  decrement: () => void;
+};
 
 export const useCounter = (initialValue: number = 0): IuseCounter => {
-  const [count, setCount] = useState<number>(initialValue)
-  const increment = useCallback(() => setCount((value) => value + 1), [])
-  const decrement = useCallback(() => setCount((value) => value - 1), [])
-  const reset = useCallback(() => setCount(initialValue), [initialValue])
-  return { count, increment, decrement, reset }
-}
+  const [count, setCount] = useState<number>(initialValue);
+  const increment = useCallback(() => setCount((value) => value + 1), []);
+  const decrement = useCallback(() => setCount((value) => value - 1), []);
+  const reset = useCallback(() => setCount(initialValue), [initialValue]);
+  return { count, increment, decrement, reset };
+};

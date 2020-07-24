@@ -8,20 +8,20 @@
  * }
  */
 
-import { useState, useCallback, useRef } from 'react'
+import { useState, useCallback, useRef } from 'react';
 
 export const useHover = () => {
-  const [value, setValue] = useState<boolean>(false)
+  const [value, setValue] = useState<boolean>(false);
 
-  const handleMouseOver = useCallback(() => setValue(true), [])
-  const handleMouseOut = useCallback(() => setValue(false), [])
+  const handleMouseOver = useCallback(() => setValue(true), []);
+  const handleMouseOut = useCallback(() => setValue(false), []);
 
   /**
    * Keep track of the last node passed to callbackRef.
    * Based on that we will remove event listerens.
    */
 
-  const ref = useRef(null) as any
+  const ref = useRef(null) as any;
 
   /**
    * useEffect changes to ref.current would not cause a rerender and the effect would run again.
@@ -31,19 +31,19 @@ export const useHover = () => {
   const callbackRef = useCallback(
     (node) => {
       if (ref.current) {
-        ref.current.removeEventListener('mouseover', handleMouseOver)
-        ref.current.removeEventListener('mouseout', handleMouseOut)
+        ref.current.removeEventListener('mouseover', handleMouseOver);
+        ref.current.removeEventListener('mouseout', handleMouseOut);
       }
 
-      ref.current = node
+      ref.current = node;
 
       if (ref.current) {
-        ref.current.addEventListener('mouseover', handleMouseOver)
-        ref.current.addEventListener('mouseout', handleMouseOut)
+        ref.current.addEventListener('mouseover', handleMouseOver);
+        ref.current.addEventListener('mouseout', handleMouseOut);
       }
     },
-    [handleMouseOver, handleMouseOut]
-  )
+    [handleMouseOver, handleMouseOut],
+  );
 
-  return [callbackRef, value]
-}
+  return [callbackRef, value];
+};
