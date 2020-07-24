@@ -9,12 +9,12 @@ Disclaimer: at least React 16 is needed (the one with hooks ;) )
 Happy debugging!\
 The hook to inspect why the component has rerendered (we've all been (or will be) there).\
 If we have changes in component props, we will have them logged into js console.\
-This helps us a lot in debugging\
+This helps us a lot in debugging
 
 @param name {string} - component name (used in console.log only)\
-@param props {any} - component props\
+@param props {any} - component props
 
-Example usage\
+Example usage
 
 ```
 import { useWhyRerender } from '@nekogd/react-utility-hooks'
@@ -29,10 +29,10 @@ import { useWhyRerender } from '@nekogd/react-utility-hooks'
 
 # useHover
 
-Easily inspect if component is hovered.\
+Easily inspect if component is hovered.
 
 @returns hoverRef {any} - a ref that we need to attach\
-@returns isHovered {boolean} - whether or not element is hovered\
+@returns isHovered {boolean} - whether or not element is hovered
 
 Example usage
 
@@ -50,7 +50,7 @@ Example usage
 
 # useDocumentTitle
 
-Easily change document title without React Helmet ;)\
+Easily change document title without React Helmet ;)
 
 @param title {string} - new document title\
 @param retainOnUnmount {boolean} - whether or not to retain document title on umnount\
@@ -72,7 +72,7 @@ Example usage
 # useCounter
 
 Just a classic example to give understanding of the flow of this package i.e. types and tests.\
-@param initialValue {number?}\
+@param initialValue {number?}
 
 ```
 import { useCounter } from from "@neko/react-utility-hooks";
