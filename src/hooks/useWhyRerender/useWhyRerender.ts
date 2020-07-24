@@ -1,5 +1,5 @@
 /**
- * Utility hook to inspect why the component rerenders (we've all been (or will be)there))
+ * Utility hook to inspect why the component rerenders (we've all been - or will be - there)
  * example usage
  * const ExampleComponent = memo(props => {
  * const { count, style } = props;
@@ -8,13 +8,13 @@
  * })
  */
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, MutableRefObject } from 'react';
 
 export const useWhyRerender = (name: string, props: any): void => {
   /**
    * Mutable ref object to store props so that we can compare props on each hook run
    */
-  const previousProps = useRef<any>();
+  const previousProps = useRef<MutableRefObject<any>>();
 
   useEffect(() => {
     if (previousProps.current) {
