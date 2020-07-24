@@ -52,8 +52,7 @@ Example usage
 
 Easily change document title without React Helmet ;)
 
-@param title {string} - new document title\
-@param retainOnUnmount {boolean} - whether or not to retain document title on umnount\
+@param title {string} - new document title
 
 Example usage
 
