@@ -1,16 +1,15 @@
 import { useEffect, useCallback } from 'react';
 import { getTargetElement, BasicTarget } from '../../helpers';
 
-
 const defaultEvent = 'click';
 
 type EventType = MouseEvent | TouchEvent;
 
-export default function useClickAway(
+export const useClickAway = (
   onClickAway: (event: EventType) => void,
   target: BasicTarget,
   eventName: string = defaultEvent,
-) {
+) => {
   const handler = useCallback(
     (event) => {
       const targetElement = getTargetElement(target) as HTMLElement;
@@ -31,4 +30,4 @@ export default function useClickAway(
       document.removeEventListener(eventName, handler);
     };
   }, [eventName, handler]);
-}
+};
