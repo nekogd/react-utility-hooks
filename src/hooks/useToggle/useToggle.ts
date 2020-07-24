@@ -3,13 +3,13 @@ import { useState } from 'react';
 export const useToggle = (
   initialValue: boolean = false,
 ): [boolean, (value?: boolean) => void] => {
-  const [state, setState] = useState<boolean>(initialValue);
+  const [toggled, setToggled] = useState<boolean>(initialValue);
   const toggleState = (value?: boolean) => {
     if (value === undefined) {
-      setState(!state);
+      setToggled(!toggled);
     } else {
-      setState(value);
+      setToggled(value);
     }
   };
-  return [state, toggleState];
+  return [toggled, toggleState];
 };

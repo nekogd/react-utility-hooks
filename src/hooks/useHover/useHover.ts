@@ -21,7 +21,7 @@ export const useHover = () => {
    * Based on that we will remove event listerens.
    */
 
-  const ref = useRef(null) as any;
+  const ref = useRef<HTMLElement | null>(null);
 
   /**
    * useEffect changes to ref.current would not cause a rerender and the effect would run again.

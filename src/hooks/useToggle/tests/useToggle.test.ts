@@ -4,23 +4,23 @@ import { useToggle } from '../useToggle';
 describe('useToggle tests', () => {
   it('should initialize with default value false if no initial value was passed', () => {
     const { result } = renderHook(() => useToggle());
-    const [state] = result.current;
+    const [toggled] = result.current;
 
-    expect(state).toBeFalsy();
+    expect(toggled).toBeFalsy();
   });
 
   it('should initialize with default value true if initial value true was passed', () => {
     const { result } = renderHook(() => useToggle(true));
-    const [state] = result.current;
+    const [toggled] = result.current;
 
-    expect(state).toBeTruthy();
+    expect(toggled).toBeTruthy();
   });
 
   it('should initialize with default value false if initial value false was passed', () => {
     const { result } = renderHook(() => useToggle(false));
-    const [state] = result.current;
+    const [toggled] = result.current;
 
-    expect(state).toBeFalsy();
+    expect(toggled).toBeFalsy();
   });
 
   it('should be the opposite value after toggle function was called', () => {
