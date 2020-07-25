@@ -57,14 +57,16 @@ import { useEventListener } from '@nekogd/react-utility-hooks';
       <>
         <h2>client mouse coords</h2>
         <table>
-          <tr>
-            <td>clientX</td>
-            <td>{coords.x}</td>
-          </tr>
-          <tr>
-            <td>clientY</td>
-            <td>{coords.y}</td>
-          </tr>
+          <tbody>
+            <tr>
+              <td>clientX</td>
+              <td>{coords.x}</td>
+            </tr>
+            <tr>
+              <td>clientY</td>
+              <td>{coords.y}</td>
+            </tr>
+          </tbody>
         </table>
       </>
     );
