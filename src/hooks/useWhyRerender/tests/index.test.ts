@@ -6,7 +6,9 @@ describe('useWhyRerender', () => {
   it('should be defined', () => {
     expect(useWhyRerender).toBeDefined();
   });
-
+  /**
+   * this hook does not return anything, instead it logs into the console.
+   */
   it('should work', () => {
     console.log = jest.fn();
     const setup = () =>

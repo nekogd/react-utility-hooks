@@ -2,6 +2,10 @@ import { act, renderHook } from '@testing-library/react-hooks';
 import { useToggle } from '../index';
 
 describe('useToggle tests', () => {
+  it('should be defined', () => {
+    expect(useToggle).toBeDefined();
+  });
+
   it('should initialize with default value false if no initial value was passed', () => {
     const { result } = renderHook(() => useToggle());
     const { toggled } = result.current;

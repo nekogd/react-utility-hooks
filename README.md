@@ -4,7 +4,7 @@ Modular utility hooks that we often use grouped in one package.\
 Written in TypeScript, documented, tested and maintained.\
 Disclaimer: at least React 16 is needed (the one with hooks ;) )
 
-# useWhyRerender
+## useWhyRerender
 
 Happy debugging!\
 The hook to inspect why the component has rerendered (we've all been (or will be) there).\
@@ -14,7 +14,7 @@ This helps us a lot in debugging
 @param name {string} - component name (used in console.log only)\
 @param props {any} - component props
 
-Example usage
+### Example usage
 
 ```
 import { useWhyRerender } from '@nekogd/react-utility-hooks'
@@ -27,7 +27,49 @@ import { useWhyRerender } from '@nekogd/react-utility-hooks'
  })
 ```
 
-# useHover
+## useEventListener
+
+If we find ourselves adding eventListeners with useEffect a lot, it might be a good idea to abstract that to a custom hook.
+
+### Example usage
+
+```
+import { useEventListener } from '@nekogd/react-utility-hooks';
+
+  // Initial state to track down mouse position
+  const [coords, setCoords] = useState({ x: 0, y: 0 });
+
+  // Make sure the reference don't change
+  const handler = useCallback(
+    ({ clientX, clientY }) => {
+      setCoords({ x: clientX, y: clientY });
+    },
+    [setCoords]
+  );
+
+  // Add event listener using our hook
+  useEventListener('mousemove', handler);
+```
+
+### Api
+
+## API
+
+```ts
+function useEventListener(
+  eventName: string,
+  handler: Function,
+  options?: { target: Target; capture?: boolean; once?: boolean; passive?: boolean },
+): void;
+
+type Target =
+  | (() => HTMLElement)
+  | HTMLElement
+  | React.MutableRefObject<HTMLElement>
+  | Window;
+```
+
+## useHover
 
 Easily inspect if component is hovered.
 
@@ -48,7 +90,7 @@ Example usage
   }
 ```
 
-# useDocumentTitle
+## useDocumentTitle
 
 Easily change document title without React Helmet ;)
 
@@ -68,7 +110,7 @@ Example usage
   }
 ```
 
-# useCounter
+## useCounter
 
 Just a classic example to give understanding of the flow of this package i.e. types and tests.\
 @param initialValue {number?}
