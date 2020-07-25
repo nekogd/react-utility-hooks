@@ -11,8 +11,10 @@ The hook to inspect why the component has rerendered (we've all been (or will be
 If we have changes in component props, we will have them logged into js console.\
 This helps us a lot in debugging
 
+```
 @param name {string} - component name (used in console.log only)\
 @param props {any} - component props
+```
 
 ### Example usage
 
@@ -36,24 +38,41 @@ If we find ourselves adding eventListeners with useEffect a lot, it might be a g
 ```
 import { useEventListener } from '@nekogd/react-utility-hooks';
 
-  // Initial state to track down mouse position
-  const [coords, setCoords] = useState({ x: 0, y: 0 });
+  const ExampleComponent = () => {
+    // Initial state to track down mouse position
+    const [coords, setCoords] = useState({ x: 0, y: 0 });
 
-  // Make sure the reference don't change
-  const handler = useCallback(
-    ({ clientX, clientY }) => {
-      setCoords({ x: clientX, y: clientY });
-    },
-    [setCoords]
-  );
+    // Make sure the reference don't change
+    const handler = useCallback(
+      ({ clientX, clientY }) => {
+        setCoords({ x: clientX, y: clientY });
+      },
+      [setCoords]
+    );
 
-  // Add event listener using our hook
-  useEventListener('mousemove', handler);
+    // Add event listener using our hook
+    useEventListener('mousemove', handler);
+
+    return (
+      <>
+        <h2>client mouse coords</h2>
+        <table>
+          <tr>
+            <td>clientX</td>
+            <td>{coords.x}</td>
+          </tr>
+          <tr>
+            <td>clientY</td>
+            <td>{coords.y}</td>
+          </tr>
+        </table>
+      </>
+    );
+  }
+
 ```
 
 ### Api
-
-## API
 
 ```ts
 function useEventListener(
@@ -69,14 +88,64 @@ type Target =
   | Window;
 ```
 
+## useClickAway
+
+A hook that manages click outside of target elements./ 
+We've all been there.
+
+### Example usage
+
+```
+  import { useClickAway } from from "@neko/react-utility-hooks";
+
+  const ExampleComponent = () => {
+    const [counter, setCounter] = useState(0);
+    const ref = useRef();
+    useClickAway(() => {
+      setCounter((s) => s + 1);
+    }, ref);
+
+    return (
+      <>
+        <div>
+          Click anywhere outside the span to increse the counter
+          <span ref={ref}>
+            <button type="button">This does not increase the counter</button>
+          </span>
+          <p>counter: {counter}</p>
+        </div>
+      </>
+    );
+  }
+
+```
+
+### API
+
+```ts
+useClickAway(
+  onClickAway: (event: MouseEvent | TouchEvent) => void,
+  target: (() => HTMLElement) | HTMLElement | React.MutableRefObject,
+);
+```
+
+### Params
+
+| Property    | Description               | Type                                                         | Default |
+| ----------- | ------------------------- | ------------------------------------------------------------ | ------- |
+| onClickAway | Trigger Function          | (event) => void                                              | -       |
+| target      | DOM element or Ref Object | (() => HTMLElement) \| HTMLElement \| React.MutableRefObject | -       |
+
 ## useHover
 
 Easily inspect if component is hovered.
 
+```
 @returns hoverRef {any} - a ref that we need to attach\
 @returns isHovered {boolean} - whether or not element is hovered
+```
 
-Example usage
+### Example usage
 
 ```
   import { useHover } from '@nekogd/react-utility-hooks'
@@ -93,13 +162,14 @@ Example usage
 ## useDocumentTitle
 
 Easily change document title without React Helmet ;)
-
+```
 @param title {string} - new document title
+```
 
-Example usage
+### Example usage
 
 ```
-  import { useHover } from '@nekogd/react-utility-hooks'
+  import { useDocumentTitle } from '@nekogd/react-utility-hooks'
 
   const ExampleComponent = () => {
     useDocumentTitle(`my new Document Title`);
@@ -113,7 +183,12 @@ Example usage
 ## useCounter
 
 Just a classic example to give understanding of the flow of this package i.e. types and tests.\
+
+```
 @param initialValue {number?}
+```
+
+### Example usage
 
 ```
 import { useCounter } from from "@neko/react-utility-hooks";
