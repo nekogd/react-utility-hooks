@@ -90,7 +90,7 @@ type Target =
 
 ## useClickAway
 
-A hook that manages click outside of target elements./ 
+A hook that manages click outside of target elements. 
 We've all been there.
 
 ### Example usage
