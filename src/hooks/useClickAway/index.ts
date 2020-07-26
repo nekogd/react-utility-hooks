@@ -5,6 +5,35 @@ const defaultEvent = 'click';
 
 type EventType = MouseEvent | TouchEvent;
 
+/**
+ * Hook for handling clickAway events
+ * @param {EventType} onClickAway
+ * @param {BasicTarget} target
+ * @param {string} eventName
+ *
+ * @example
+ *
+ * const ExampleComponent = () => {
+ *
+ *   const [counter, setCounter] = useState(0);
+ *   const ref = useRef();
+ *   useClickAway(() => {
+ *     setCounter((s) => s + 1);
+ *   }, ref);
+ *
+ *   return (
+ *     <>
+ *       <div>
+ *         I am increasing
+ *         <div ref={ref}>
+ *           <button type="button">I am not increasing the counter</button>
+ *         </div>
+ *         <p>counter: {counter}</p>
+ *       </div>
+ *     </>
+ *   )
+ * }
+ */
 export const useClickAway = (
   onClickAway: (event: EventType) => void,
   target: BasicTarget,

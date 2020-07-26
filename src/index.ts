@@ -5,3 +5,4 @@ export { useHover } from './hooks/useHover/';
 export { useToggle } from './hooks/useToggle/';
 export { useClickAway } from './hooks/useClickAway';
 export { useEventListener } from './hooks/useEventListener';
+export { useSlug } from './hooks/useSlug';

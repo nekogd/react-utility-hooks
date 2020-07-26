@@ -11,11 +11,6 @@ The hook to inspect why the component has rerendered (we've all been (or will be
 If we have changes in component props, we will have them logged into js console.\
 This helps us a lot in debugging
 
-```
-@param name {string} - component name (used in console.log only)\
-@param props {any} - component props
-```
-
 ### Example usage
 
 ```
@@ -27,6 +22,16 @@ import { useWhyRerender } from '@nekogd/react-utility-hooks'
 
    return <div style={style}>{count}</div>
  })
+```
+
+### API
+
+```ts
+type IUseWhyRerender = {
+  [key: string]: any;
+};
+
+function useWhyRerender(componentName: string, props: IUseWhyRerender): void;
 ```
 
 ## useEventListener
@@ -92,7 +97,7 @@ type Target =
 
 ## useClickAway
 
-A hook that manages click outside of target elements. 
+A hook that manages click outside of target elements.
 We've all been there.
 
 ### Example usage
@@ -125,7 +130,7 @@ We've all been there.
 ### API
 
 ```ts
-useClickAway(
+function useClickAway(
   onClickAway: (event: MouseEvent | TouchEvent) => void,
   target: (() => HTMLElement) | HTMLElement | React.MutableRefObject,
 );
@@ -143,8 +148,8 @@ useClickAway(
 Easily inspect if component is hovered.
 
 ```
-@returns hoverRef {any} - a ref that we need to attach\
-@returns isHovered {boolean} - whether or not element is hovered
+@return hoverRef {any} - a ref that we need to attach\
+@return isHovered {boolean} - whether or not element is hovered
 ```
 
 ### Example usage
@@ -161,12 +166,20 @@ Easily inspect if component is hovered.
   }
 ```
 
+### API
+
+```ts
+
+function useHover(<T extends HTMLElement>(): [
+  (node?: T | null) => void,
+  boolean,
+])
+
+```
+
 ## useDocumentTitle
 
 Easily change document title without React Helmet ;)
-```
-@param title {string} - new document title
-```
 
 ### Example usage
 
@@ -180,6 +193,36 @@ Easily change document title without React Helmet ;)
        <> Content of my component </>
     )
   }
+```
+
+### API
+
+```ts
+function useDocumentTitle(title: string): void;
+```
+
+## useSlug
+
+Generate slug from input string
+
+### Example usage
+
+```
+  import { useSlug } from '@nekogd/react-utility-hooks'
+
+  const ExampleComponent = () => {
+    const slug = useSlug('Some string');
+
+    return (
+       <> The slug is {slug} </>
+    )
+  }
+```
+
+### API
+
+```ts
+function useSlug(inputString: string): string;
 ```
 
 ## useCounter
@@ -206,4 +249,17 @@ const ExampleComponent = () => {
     </>
   );
 };
+```
+
+### API
+
+```ts
+type IUseCounter = {
+  count: number;
+  increment: () => void;
+  reset: () => void;
+  decrement: () => void;
+};
+
+function useCounter(initialValue: number = 0): IUseCounter;
 ```

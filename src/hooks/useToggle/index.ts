@@ -1,17 +1,19 @@
+import { useState, useCallback } from 'react';
+
+type IUseToggle = { toggled: boolean; handleToggled: (value?: boolean) => void };
+
 /**
- * Hook to toggle
- * @param (optional) - initialState {boolean}
- * 
- * @returns toggled {boolean}
- * @returns handleToggled {fn}
- *   
- * Example usage
- * 
- * import { useToggle } from '@nekogd/react-utility-hooks';
- * 
+ * Hook to toggle state
+ * @param {number} - initialState
+ *
+ * @return {boolean} toggled
+ * @return {()=>void} handleToggled
+ *
+ * @example
+ *
  * const ExampleComponent = () => {
  *   const { toggled, handleToggled } = useToggle();
- * 
+ *
  *   return (
  *     <>
  *       <button onClick={handleToggled}>toggle</button>
@@ -21,11 +23,7 @@
  * };
  */
 
-import { useState, useCallback } from 'react';
-
-type IuseToggle = { toggled: boolean; handleToggled: (value?: boolean) => void };
-
-export const useToggle = (initialState = false): IuseToggle => {
+export const useToggle = (initialState = false): IUseToggle => {
   const [toggled, setToggled] = useState(initialState);
   const handleToggled = useCallback(() => setToggled((toggled) => !toggled), []);
 

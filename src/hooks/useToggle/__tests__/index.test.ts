@@ -2,7 +2,7 @@ import { act, renderHook } from '@testing-library/react-hooks';
 import { useToggle } from '../index';
 
 describe('useToggle tests', () => {
-  it('should be defined', () => {
+  it('useToggle should be defined', () => {
     expect(useToggle).toBeDefined();
   });
 

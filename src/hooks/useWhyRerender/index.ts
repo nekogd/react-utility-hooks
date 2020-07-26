@@ -1,24 +1,30 @@
-/**
- * Utility hook to inspect why the component rerenders (we've all been - or will be - there)
- * example usage
- * const ExampleComponent = memo(props => {
- * const { count, style } = props;
- * useWhyRerender('example component name', props);
- * return <div style={style}>{count}</div>
- * })
- */
-
 import { useEffect, useRef } from 'react';
 
-export type IProps = {
+type IUseWhyRerender = {
   [key: string]: any;
 };
 
-export const useWhyRerender = (name: string, props: IProps): void => {
+/**
+ * Utility hook to inspect why the component rerenders (we've all been - or will be - there)
+ * @param {string} componentName - name of the component that we will use in the console.log
+ * @param {IUseWhyRerender} props - component props that we will use for debugging
+ * 
+ * @example
+ * const ExampleComponent = memo(props => {
+ *   const { count, style } = props;
+ *   useWhyRerender('example component name', props);
+ * 
+ *   return <div style={style}>{count}</div>
+ * })
+ * 
+ * <ExampleComponent count = {count} style = {{background: 'red'}}/>
+ */
+
+export const useWhyRerender = (componentName: string, props: IUseWhyRerender): void => {
   /**
    * Mutable ref object to store props so that we can compare props on each hook run
    */
-  const previousProps = useRef<IProps>({});
+  const previousProps = useRef<IUseWhyRerender>({});
 
   useEffect(() => {
     if (previousProps.current) {
@@ -28,7 +34,7 @@ export const useWhyRerender = (name: string, props: IProps): void => {
       /**
        * object to track the changes in props
        */
-      const objectWithChanges: IProps = {};
+      const objectWithChanges: IUseWhyRerender = {};
       // Iterate through keys generated from props
       if (allKeys && allKeys.length > 0) {
         for (let i = 0, len = allKeys.length; i < len; i++) {
@@ -45,7 +51,7 @@ export const useWhyRerender = (name: string, props: IProps): void => {
 
       // If objectWithChanges is not empty, we log to the console
       if (Object.keys(objectWithChanges).length) {
-        console.log('WHY RERENDER:', name, objectWithChanges);
+        console.log('WHY RERENDER:', componentName, objectWithChanges);
       }
     }
 

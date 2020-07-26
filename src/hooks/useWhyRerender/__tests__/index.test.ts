@@ -3,7 +3,7 @@ import { useWhyRerender } from '../index';
 import { useState } from 'react';
 
 describe('useWhyRerender', () => {
-  it('should be defined', () => {
+  it('useWhyRerender should be defined', () => {
     expect(useWhyRerender).toBeDefined();
   });
   /**
@@ -13,7 +13,7 @@ describe('useWhyRerender', () => {
     console.log = jest.fn();
     const setup = () =>
       renderHook(() => {
-        const [count, setCount] = useState(100);
+        const [count, setCount] = useState(50);
         useWhyRerender('useWhyRerenderComponent', { count });
         return {
           setCount,
@@ -30,7 +30,7 @@ describe('useWhyRerender', () => {
       'useWhyRerenderComponent',
       {
         count: {
-          from: 100,
+          from: 50,
           to: 1,
         },
       },
