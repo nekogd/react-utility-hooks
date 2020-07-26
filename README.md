@@ -6,7 +6,13 @@ Disclaimer: at least React 16 is needed (that's the one with hooks)).:)
 
 The example usages are in JavaScript.
 
-For TS users, please refer to API or JSDoc of a given hook, you have all the necessary information about types. 
+For TS users, please refer to API or JSDoc of a given hook, you have all the necessary information about types.
+
+## Live demo (React app that makes use of the package)
+
+CodeSandbox: https://codesandbox.io/s/github/nekogd/react-utility-hooks-examples-sandbox
+
+GitHub: https://github.com/nekogd/react-utility-hooks-examples-sandbox
 
 ## useWhyRerender
 
@@ -18,14 +24,14 @@ This helps us a lot in debugging.
 ### Example usage
 
 ```js
-import { useWhyRerender } from '@nekogd/react-utility-hooks'
+import { useWhyRerender } from '@nekogd/react-utility-hooks';
 
- const ExampleComponent = React.memo(props => {
-   const { count, style } = props;
-   useWhyRerender('example component name', props);
+const ExampleComponent = React.memo((props) => {
+  const { count, style } = props;
+  useWhyRerender('example component name', props);
 
-   return <div style={style}>{count}</div>
- })
+  return <div style={style}>{count}</div>;
+});
 ```
 
 Check your JS console, it will be empty if props has not changed, or will show you the changes.
@@ -51,46 +57,44 @@ More info: https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEvent
 ```js
 import { useEventListener } from '@nekogd/react-utility-hooks';
 
-  const ExampleComponent = () => {
-    // Initial state to track down mouse position
-    const [coords, setCoords] = useState({ x: 0, y: 0 });
+const ExampleComponent = () => {
+  // Initial state to track down mouse position
+  const [coords, setCoords] = useState({ x: 0, y: 0 });
 
-    // Make sure the reference don't change
-    const handler = useCallback(
-      ({ clientX, clientY }) => {
-        setCoords({ x: clientX, y: clientY });
-      },
-      [setCoords]
-    );
+  // Make sure the reference don't change
+  const handler = useCallback(
+    ({ clientX, clientY }) => {
+      setCoords({ x: clientX, y: clientY });
+    },
+    [setCoords],
+  );
 
-    // Add event listener using our hook
-    useEventListener('mousemove', handler);
+  // Add event listener using our hook
+  useEventListener('mousemove', handler);
 
-    return (
-      <>
-        <h2>client mouse coords</h2>
-        <table>
-          <tbody>
-            <tr>
-              <td>clientX</td>
-              <td>{coords.x}</td>
-            </tr>
-            <tr>
-              <td>clientY</td>
-              <td>{coords.y}</td>
-            </tr>
-          </tbody>
-        </table>
-      </>
-    );
-  }
-
+  return (
+    <>
+      <h2>client mouse coords</h2>
+      <table>
+        <tbody>
+          <tr>
+            <td>clientX</td>
+            <td>{coords.x}</td>
+          </tr>
+          <tr>
+            <td>clientY</td>
+            <td>{coords.y}</td>
+          </tr>
+        </tbody>
+      </table>
+    </>
+  );
+};
 ```
 
 ### Api
 
 ```ts
-
 type Target =
   | (() => HTMLElement)
   | HTMLElement
@@ -111,11 +115,14 @@ A hook that manages click outside of target elements.
 ### Example usage
 
 ```js
-  import { useClickAway } from from "@neko/react-utility-hooks";
+  import { useClickAway } from "@nekogd/react-utility-hooks";
 
   const ExampleComponent = () => {
     const [counter, setCounter] = useState(0);
     const ref = useRef();
+    
+    // with TypeScript we might have to say const ref = useRef() as React.MutableRefObject<HTMLElement>; 
+    
     useClickAway(() => {
       setCounter((s) => s + 1);
     }, ref);
@@ -158,15 +165,13 @@ Inspect if component is hovered.
 ### Example usage
 
 ```js
-  import { useHover } from '@nekogd/react-utility-hooks'
+import { useHover } from '@nekogd/react-utility-hooks';
 
-  const ExampleComponent = () => {
-    const [hoverRef, isHovered] = useHover();
+const ExampleComponent = () => {
+  const [hoverRef, isHovered] = useHover();
 
-    return (
-       <div ref={hoverRef}> {isHovered ? 'I am hovered': 'Not hovered'}</div>
-    )
-  }
+  return <div ref={hoverRef}> {isHovered ? 'I am hovered' : 'Not hovered'}</div>;
+};
 ```
 
 ### API
@@ -187,15 +192,13 @@ Change document title without React Helmet. :)
 ### Example usage
 
 ```js
-  import { useDocumentTitle } from '@nekogd/react-utility-hooks'
+import { useDocumentTitle } from '@nekogd/react-utility-hooks';
 
-  const ExampleComponent = () => {
-    useDocumentTitle(`my new Document Title`);
+const ExampleComponent = () => {
+  useDocumentTitle(`my new Document Title`);
 
-    return (
-       <> Content of my component </>
-    )
-  }
+  return <> Content of my component </>;
+};
 ```
 
 ### API
@@ -211,15 +214,13 @@ Generate slug from input string.
 ### Example usage
 
 ```js
-  import { useSlug } from '@nekogd/react-utility-hooks'
+import { useSlug } from '@nekogd/react-utility-hooks';
 
-  const ExampleComponent = () => {
-    const slug = useSlug('Some string');
+const ExampleComponent = () => {
+  const slug = useSlug('Some string');
 
-    return (
-       <> The slug is {slug} </>
-    )
-  }
+  return <> The slug is {slug} </>;
+};
 ```
 
 ### API
@@ -230,7 +231,7 @@ function useSlug(inputString: string): string;
 
 ## UseToggle
 
-Just to toggle i.e. accordions. Accepts initial value.
+Just to toggle i.e. accordions. Accepts initial boolean value.
 
 ### example usage
 
@@ -238,10 +239,14 @@ Just to toggle i.e. accordions. Accepts initial value.
 const ExampleComponent = () => {
   const { toggled, handleToggled } = useToggle();
 
+  const handleClick = () => {
+    handleToggled();
+  };
+
   return (
     <>
-      <button onClick={handleToggled}>toggle</button>
-      {toggled ? "visible" : "hidden"}
+      <button onClick={handleClick}>toggle</button>
+      {toggled ? 'visible' : 'hidden'}
     </>
   );
 };
@@ -262,7 +267,7 @@ Groundbreaking useCounter example to give understanding of the flow of this pack
 ### Example usage
 
 ```js
-import { useCounter } from from "@nekogd/react-utility-hooks";
+import { useCounter } from "@nekogd/react-utility-hooks";
 
 const ExampleComponent = () => {
   const { count, increment, reset, decrement } = useCounter();
