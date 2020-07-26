@@ -2,11 +2,11 @@ import PropTypes from 'prop-types';
 
 /**
  * Hook to generate slugs from strings.
- * @param  {string} inputString
+ * @param  {string} input
  *         string that is used to generate the slug from i.e. "I am Title"
  *
- * @return {string}
- *         slug generated from input i.e. "i-am-title"
+ * @return {string | null}
+ *         slug generated from input i.e. "i-am-title" or null if empty value given
  *
  * @example
  *
@@ -18,12 +18,14 @@ import PropTypes from 'prop-types';
  *
  */
 
-export const useSlug = (inputString: string): string => {
+export const useSlug = (input: string): string | null => {
   const from = 'àáäâãåăąæçćęèéëêǵḧìíïîḿńǹñòóöôœøṕŕßśșțùúüûǘẃẍÿżź·/_,:;';
   const to = 'aaaaaaaaacceeeeeghiiiimnnnooooooprssstuuuuuwxyzz------';
   const regex = new RegExp(from.split('').join('|'), 'g');
+  
+  if (!input || typeof input !== 'string') return null;
 
-  return inputString
+  return input
     .toString()
     .toLowerCase()
     .replace(/\s+/g, '-')
@@ -36,5 +38,5 @@ export const useSlug = (inputString: string): string => {
 };
 
 useSlug.PropTypes = {
-  inputString: PropTypes.string.isRequired,
+  input: PropTypes.string.isRequired,
 };

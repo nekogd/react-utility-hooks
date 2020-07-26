@@ -226,7 +226,7 @@ const ExampleComponent = () => {
 ### API
 
 ```ts
-function useSlug(inputString: string): string;
+function useSlug(input: string): string | null;
 ```
 
 ## UseToggle

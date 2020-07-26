@@ -16,7 +16,7 @@ describe('useSlug tests', () => {
   it('should return slug with polish special chars', () => {
     const { result } = renderHook(() => useSlug('Somę lątin chąrs'));
     const slug = result.current;
-    
+
     expect(slug).toEqual('some-latin-chars');
   });
 });

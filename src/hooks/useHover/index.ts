@@ -1,17 +1,19 @@
+import { useState, useCallback, useRef } from 'react';
+
 /**
- * 
+ *
  * Function to determine if HTML element is hovered
- * 
- * @param {HTMLElement} node 
+ *
+ * @param {HTMLElement} node
  *        HTML node that we need to inspect
- * 
- * @returns {[(HTMLElement | null) => void}, boolean]} 
- *          array, 
+ *
+ * @returns {[(HTMLElement | null) => void}, boolean]}
+ *          array,
  *          first element is callback ref function,
  *          second element whether or not the element is hovered
- * 
+ *
  * @example
- * 
+ *
  * const ExampleComponent = () => {
  *   const [hoverRef, isHovered] = useHover();
  *   return (
@@ -19,8 +21,6 @@
  *   )
  * }
  */
-
-import { useState, useCallback, useRef } from 'react';
 
 export const useHover = <T extends HTMLElement>(): [
   (node?: T | null) => void,
