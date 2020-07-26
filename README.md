@@ -9,7 +9,7 @@ Disclaimer: at least React 16 is needed (the one with hooks ;) )
 Happy debugging!\
 The hook to inspect why the component has rerendered (we've all been (or will be) there).\
 If we have changes in component props, we will have them logged into js console.\
-This helps us a lot in debugging
+This helps us a lot in debugging.
 
 ### Example usage
 
@@ -24,6 +24,8 @@ import { useWhyRerender } from '@nekogd/react-utility-hooks'
  })
 ```
 
+Check your JS console, it will be empty if props has not changed, or will show you the changes.
+
 ### API
 
 ```ts
@@ -36,7 +38,8 @@ function useWhyRerender(componentName: string, props: IUseWhyRerender): void;
 
 ## useEventListener
 
-If we find ourselves adding eventListeners with useEffect a lot, it might be a good idea to abstract that to a custom hook.
+If we find ourselves adding eventListeners with useEffect a lot, it might be a good idea to abstract that to a custom hook./
+More info: https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
 
 ### Example usage
 
@@ -147,11 +150,6 @@ function useClickAway(
 
 Easily inspect if component is hovered.
 
-```
-@return hoverRef {any} - a ref that we need to attach\
-@return isHovered {boolean} - whether or not element is hovered
-```
-
 ### Example usage
 
 ```
@@ -225,13 +223,34 @@ Generate slug from input string
 function useSlug(inputString: string): string;
 ```
 
+## UseToggle
+
+### example usage
+
+```
+const ExampleComponent = () => {
+  const { toggled, handleToggled } = useToggle();
+
+  return (
+    <>
+      <button onClick={handleToggled}>toggle</button>
+      {toggled ? "visible" : "hidden"}
+    </>
+  );
+};
+```
+
+### API
+
+```ts
+type IUseToggle = { toggled: boolean; handleToggled: (value?: boolean) => void };
+
+function useToggle(initialState: boolean = false): IUseToggle;
+```
+
 ## useCounter
 
 Just a classic example to give understanding of the flow of this package i.e. types and tests.\
-
-```
-@param initialValue {number?}
-```
 
 ### Example usage
 

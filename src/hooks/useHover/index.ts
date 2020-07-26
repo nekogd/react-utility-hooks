@@ -4,7 +4,7 @@
  * 
  * @param {HTMLElement} node - HTML node that we need to inspect
  * 
- * @return {[(HTMLElement | null) => void}, boolean]} array, 
+ * @returns {[(HTMLElement | null) => void}, boolean]} array, 
  * first element is callback ref function,
  * second element whether or not the element is hovered
  * 

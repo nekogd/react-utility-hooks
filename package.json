@@ -24,7 +24,8 @@
       "ts",
       "tsx",
       "js"
-    ]
+    ],
+    "modulePathIgnorePatterns": ["<rootDir>/dist/"]
   },
   "peerDependencies": {
     "react": ">= 16.8.0",
