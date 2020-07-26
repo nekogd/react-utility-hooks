@@ -2,7 +2,7 @@
 
 Modular utility hooks that we often use grouped in one package.\
 Written in TypeScript, documented, tested and maintained.\
-Disclaimer: at least React 16 is needed (the one with hooks ;) )
+Disclaimer: at least React 16 is needed (that's the one with hooks)).:)
 
 ## useWhyRerender
 
@@ -38,7 +38,8 @@ function useWhyRerender(componentName: string, props: IUseWhyRerender): void;
 
 ## useEventListener
 
-If we find ourselves adding eventListeners with useEffect a lot, it might be a good idea to abstract that to a custom hook./
+If we find ourselves adding eventListeners with useEffect a lot, it might be a good idea to abstract that to a custom hook.
+
 More info: https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
 
 ### Example usage
@@ -101,7 +102,6 @@ type Target =
 ## useClickAway
 
 A hook that manages click outside of target elements.
-We've all been there.
 
 ### Example usage
 
@@ -148,7 +148,7 @@ function useClickAway(
 
 ## useHover
 
-Easily inspect if component is hovered.
+Inspect if component is hovered.
 
 ### Example usage
 
@@ -177,7 +177,7 @@ function useHover(<T extends HTMLElement>(): [
 
 ## useDocumentTitle
 
-Easily change document title without React Helmet ;)
+Change document title without React Helmet. :)
 
 ### Example usage
 
@@ -201,7 +201,7 @@ function useDocumentTitle(title: string): void;
 
 ## useSlug
 
-Generate slug from input string
+Generate slug from input string.
 
 ### Example usage
 
@@ -224,6 +224,8 @@ function useSlug(inputString: string): string;
 ```
 
 ## UseToggle
+
+Just to toggle i.e. accordions. Accepts initial value.
 
 ### example usage
 
@@ -250,7 +252,7 @@ function useToggle(initialState: boolean = false): IUseToggle;
 
 ## useCounter
 
-Just a classic example to give understanding of the flow of this package i.e. types and tests.\
+Groundbreaking useCounter example to give understanding of the flow of this package i.e. types and tests.
 
 ### Example usage
 
