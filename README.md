@@ -1,8 +1,12 @@
 # React Utility Hooks
 
 Modular utility hooks that we often use grouped in one package.\
-Written in TypeScript, documented, tested and maintained.\
+Written in TypeScript, documented (NPM and JSDoc), unit tested (not all of them atm) and maintained.\
 Disclaimer: at least React 16 is needed (that's the one with hooks)).:)
+
+The example usages are in JavaScript.
+
+For TS users, please refer to API or JSDoc of a given hook, you have all the necessary information about types. 
 
 ## useWhyRerender
 
@@ -13,7 +17,7 @@ This helps us a lot in debugging.
 
 ### Example usage
 
-```
+```js
 import { useWhyRerender } from '@nekogd/react-utility-hooks'
 
  const ExampleComponent = React.memo(props => {
@@ -44,7 +48,7 @@ More info: https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEvent
 
 ### Example usage
 
-```
+```js
 import { useEventListener } from '@nekogd/react-utility-hooks';
 
   const ExampleComponent = () => {
@@ -86,17 +90,18 @@ import { useEventListener } from '@nekogd/react-utility-hooks';
 ### Api
 
 ```ts
-function useEventListener(
-  eventName: string,
-  handler: Function,
-  options?: { target: Target; capture?: boolean; once?: boolean; passive?: boolean },
-): void;
 
 type Target =
   | (() => HTMLElement)
   | HTMLElement
   | React.MutableRefObject<HTMLElement>
   | Window;
+
+function useEventListener(
+  eventName: string,
+  handler: Function,
+  options?: { target: Target; capture?: boolean; once?: boolean; passive?: boolean },
+): void;
 ```
 
 ## useClickAway
@@ -105,7 +110,7 @@ A hook that manages click outside of target elements.
 
 ### Example usage
 
-```
+```js
   import { useClickAway } from from "@neko/react-utility-hooks";
 
   const ExampleComponent = () => {
@@ -152,7 +157,7 @@ Inspect if component is hovered.
 
 ### Example usage
 
-```
+```js
   import { useHover } from '@nekogd/react-utility-hooks'
 
   const ExampleComponent = () => {
@@ -181,7 +186,7 @@ Change document title without React Helmet. :)
 
 ### Example usage
 
-```
+```js
   import { useDocumentTitle } from '@nekogd/react-utility-hooks'
 
   const ExampleComponent = () => {
@@ -205,7 +210,7 @@ Generate slug from input string.
 
 ### Example usage
 
-```
+```js
   import { useSlug } from '@nekogd/react-utility-hooks'
 
   const ExampleComponent = () => {
@@ -229,7 +234,7 @@ Just to toggle i.e. accordions. Accepts initial value.
 
 ### example usage
 
-```
+```js
 const ExampleComponent = () => {
   const { toggled, handleToggled } = useToggle();
 
@@ -256,8 +261,8 @@ Groundbreaking useCounter example to give understanding of the flow of this pack
 
 ### Example usage
 
-```
-import { useCounter } from from "@neko/react-utility-hooks";
+```js
+import { useCounter } from from "@nekogd/react-utility-hooks";
 
 const ExampleComponent = () => {
   const { count, increment, reset, decrement } = useCounter();
