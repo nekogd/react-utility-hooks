@@ -1,4 +1,5 @@
 import { useCallback, useState } from 'react';
+import PropTypes from 'prop-types';
 
 type IUseCounter = {
   count: number;
@@ -7,26 +8,24 @@ type IUseCounter = {
   decrement: () => void;
 };
 
-
-
 /**
  * Classic counter example to help understand the flow of this npm package
- * 
- * @param    {number} initialValue 
+ *
+ * @param    {number} initialValue
  *           initial counter value
  *
- * @return   {Object} 
+ * @return   {Object}
  *           object with count and methods
- * 
- * @property {number} count 
+ *
+ * @property {number} count
  *           The current count state
- * 
- * @property {()=>void} increment 
+ *
+ * @property {()=>void} increment
  *           the increment function
- * 
- * @property {()=>void} decrement 
+ *
+ * @property {()=>void} decrement
  *           the decrement function
- * 
+ *
  * @property {()=>void} reset
  *           the reset function
  *
@@ -51,4 +50,12 @@ export const useCounter = (initialValue: number = 0): IUseCounter => {
   const decrement = useCallback(() => setCount((value) => value - 1), []);
   const reset = useCallback(() => setCount(initialValue), [initialValue]);
   return { count, increment, decrement, reset };
+};
+
+useCounter.PropTypes = {
+  initialValue: PropTypes.number.isRequired,
+};
+
+useCounter.defaultProps = {
+  initialValue: 0,
 };

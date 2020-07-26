@@ -1,13 +1,15 @@
+import PropTypes from 'prop-types';
+
 /**
  * Hook to generate slugs from strings.
- * @param  {string} inputString 
+ * @param  {string} inputString
  *         string that is used to generate the slug from i.e. "I am Title"
- * 
- * @return {string} 
+ *
+ * @return {string}
  *         slug generated from input i.e. "i-am-title"
  *
  * @example
- * 
+ *
  * const ExampleComponent = () => {
  *   const slug = useSlug('my string');
  *
@@ -31,4 +33,8 @@ export const useSlug = (inputString: string): string => {
     .replace(/\-\-+/g, '-')
     .replace(/^-+/, '')
     .replace(/-+$/, '');
+};
+
+useSlug.PropTypes = {
+  inputString: PropTypes.string.isRequired,
 };

@@ -1,4 +1,5 @@
 import { useState, useCallback } from 'react';
+import PropTypes from 'prop-types';
 
 type IUseToggle = { toggled: boolean; handleToggled: (value?: boolean) => void };
 
@@ -36,4 +37,12 @@ export const useToggle = (initialState = false): IUseToggle => {
   const handleToggled = useCallback(() => setToggled((toggled) => !toggled), []);
 
   return { toggled, handleToggled };
+};
+
+useToggle.PropTypes = {
+  initialState: PropTypes.bool.isRequired,
+};
+
+useToggle.defaultProps = {
+  initialState: false,
 };
