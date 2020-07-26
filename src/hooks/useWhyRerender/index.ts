@@ -6,10 +6,15 @@ type IUseWhyRerender = {
 
 /**
  * Utility hook to inspect why the component rerenders (we've all been - or will be - there)
- * @param {string} componentName - name of the component that we will use in the console.log
- * @param {IUseWhyRerender} props - component props that we will use for debugging
+ * 
+ * @param {string} componentName 
+ *        name of the component that we will use in the console.log
+ * 
+ * @param {IUseWhyRerender} props 
+ *        component props that we will use for debugging
  * 
  * @example
+ * 
  * const ExampleComponent = memo(props => {
  *   const { count, style } = props;
  *   useWhyRerender('example component name', props);

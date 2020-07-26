@@ -2,13 +2,16 @@
  * 
  * Function to determine if HTML element is hovered
  * 
- * @param {HTMLElement} node - HTML node that we need to inspect
+ * @param {HTMLElement} node 
+ *        HTML node that we need to inspect
  * 
- * @returns {[(HTMLElement | null) => void}, boolean]} array, 
- * first element is callback ref function,
- * second element whether or not the element is hovered
+ * @returns {[(HTMLElement | null) => void}, boolean]} 
+ *          array, 
+ *          first element is callback ref function,
+ *          second element whether or not the element is hovered
  * 
  * @example
+ * 
  * const ExampleComponent = () => {
  *   const [hoverRef, isHovered] = useHover();
  *   return (

@@ -1,6 +1,8 @@
 /**
  * Hook to update document title
- * @param {string} title - new document title
+ * 
+ * @param {string} title 
+ *                 new document title
  * 
  * @example
  * 
