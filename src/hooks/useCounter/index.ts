@@ -45,6 +45,18 @@ type IUseCounter = {
  */
 
 export const useCounter = (initialValue: number = 0): IUseCounter => {
+  if (typeof initialValue === 'string') {
+    console.log('you have passed a string to useCounter. It still may work however. Please pass a number.');
+    initialValue = parseInt(initialValue);
+  }
+
+  if (isNaN(initialValue)) {
+    console.log(
+      'you really want to break the useCounter. Please pass a number as parameter. Defaulting to zero.',
+    );
+    initialValue = 0;
+  }
+
   const [count, setCount] = useState<number>(initialValue);
   const increment = useCallback(() => setCount((value) => value + 1), []);
   const decrement = useCallback(() => setCount((value) => value - 1), []);
