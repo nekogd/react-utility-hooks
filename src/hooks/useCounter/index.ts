@@ -1,5 +1,6 @@
 import { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
+import { validateInitialValue } from '../../helpers/validateInitialValue';
 
 type IUseCounter = {
   count: number;
@@ -7,6 +8,7 @@ type IUseCounter = {
   reset: () => void;
   decrement: () => void;
 };
+
 
 /**
  * Classic counter example to help understand the flow of this npm package
@@ -45,22 +47,14 @@ type IUseCounter = {
  */
 
 export const useCounter = (initialValue: number = 0): IUseCounter => {
-  if (typeof initialValue === 'string') {
-    console.log('you have passed a string to useCounter. It still may work however. Please pass a number.');
-    initialValue = parseInt(initialValue);
-  }
+  const validatedInitialValue = validateInitialValue(initialValue);
 
-  if (isNaN(initialValue)) {
-    console.log(
-      'you really want to break the useCounter. Please pass a number as parameter. Defaulting to zero.',
-    );
-    initialValue = 0;
-  }
-
-  const [count, setCount] = useState<number>(initialValue);
+  const [count, setCount] = useState<number>(validatedInitialValue);
   const increment = useCallback(() => setCount((value) => value + 1), []);
   const decrement = useCallback(() => setCount((value) => value - 1), []);
-  const reset = useCallback(() => setCount(initialValue), [initialValue]);
+  const reset = useCallback(() => setCount(validatedInitialValue), [
+    validatedInitialValue,
+  ]);
   return { count, increment, decrement, reset };
 };
 
