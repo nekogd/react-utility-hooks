@@ -37,6 +37,6 @@ export const useSlug = (input: string): string | null => {
     .replace(/-+$/, '');
 };
 
-useSlug.PropTypes = {
+useSlug.propTypes = {
   input: PropTypes.string.isRequired,
 };

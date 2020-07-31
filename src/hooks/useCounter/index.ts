@@ -58,7 +58,7 @@ export const useCounter = (initialValue: number = 0): IUseCounter => {
   return { count, increment, decrement, reset };
 };
 
-useCounter.PropTypes = {
+useCounter.propTypes = {
   initialValue: PropTypes.number.isRequired,
 };
 

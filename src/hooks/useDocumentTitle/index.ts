@@ -22,6 +22,6 @@ export const useDocumentTitle = (title: string): void => {
   }, [title]);
 };
 
-useDocumentTitle.PropTypes = {
+useDocumentTitle.propTypes = {
   title: PropTypes.string.isRequired,
 };

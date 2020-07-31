@@ -39,7 +39,7 @@ export const useToggle = (initialState = false): IUseToggle => {
   return { toggled, handleToggled };
 };
 
-useToggle.PropTypes = {
+useToggle.propTypes = {
   initialState: PropTypes.bool.isRequired,
 };
 
